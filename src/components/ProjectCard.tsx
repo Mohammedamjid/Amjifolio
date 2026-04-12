@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink,  } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { Project } from '../types';
 import Button from './Button';
 
@@ -34,19 +34,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, index) => (
-            <span 
-              key={index} 
-              className="px-2 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        
         <div className="flex space-x-3 mt-auto">
-          <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex-1">
+          <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1">
             <Button variant="outline" className="w-full">
               <ExternalLink className="w-4 h-4 mr-1" />
               Live Demo
@@ -54,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </a>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

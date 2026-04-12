@@ -104,7 +104,7 @@ const ContactForm: React.FC = () => {
       )}
 
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label htmlFor="name" className="block text-sm font-medium text-white mb-1">
           Name
         </label>
         <input
@@ -123,7 +123,7 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
           Email
         </label>
         <input
@@ -142,7 +142,7 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label htmlFor="subject" className="block text-sm font-medium text-white mb-1">
           Subject
         </label>
         <input
@@ -161,7 +161,7 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label htmlFor="message" className="block text-sm font-medium text-white mb-1">
           Message
         </label>
         <textarea

@@ -27,13 +27,26 @@
   transform: translateY(0);
 }
 
+/* Light Mode */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark Mode */
+.dark body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 /* Custom cursor */
 .custom-cursor {
   position: fixed;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: rgba(37, 99, 235, 0.5);
+  background-color: rgba(255, 111, 32, 0.5);
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 9999;
@@ -44,7 +57,7 @@
 .custom-cursor.hover {
   width: 40px;
   height: 40px;
-  background-color: rgba(220, 38, 38, 0.5);
+  background-color: rgba(255, 111, 32, 0.7);
 }
 
 /* Project card hover effect */
@@ -56,12 +69,16 @@
   transform: translateY(-10px);
 }
 
-/* Background grid pattern */
-.bg-grid-pattern {
-  background-size: 50px 50px;
-  background-image: 
-    linear-gradient(to right, rgba(30, 58, 138, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 58, 138, 0.1) 1px, transparent 1px);
+/* /home icon arrow */
+
+@keyframes arrowMove {
+  0%   { transform: translateY(-2px); }
+  50%  { transform: translateY(2px); }
+  100% { transform: translateY(-2px); }
+}
+
+.animate-arrow {
+  animation: arrowMove 1.5s ease-in-out infinite;
 }
 
 /* Scrollbar styling */
@@ -70,16 +87,25 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #2563eb, #dc2626);
+  background: linear-gradient(to bottom, #000000, #ff6f20);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #1d4ed8, #b91c1c);
+  background: linear-gradient(to bottom, #111111, #ff6f20);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #000000, #ff6f20);
 }
 
 /* Gradient text */
@@ -87,27 +113,26 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #2563eb, #dc2626);
+  background-image: linear-gradient(to right, #000000, #ff6f20);
 }
 
 /* Custom focus styles */
 *:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #ff6f20;
   outline-offset: 2px;
 }
 
-/* Dark mode styles */
+/* Dark mode focus */
 .dark *:focus-visible {
-  outline-color: #3b82f6;
+  outline-color: #ff6f20;
 }
 
-/* Font styles */
-body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-/* For Firefox */
+/* Firefox scrollbar */
 html {
-  scrollbar-color: #2563eb #f1f1f1;
+  scrollbar-color: #ff6f20 #f5f5f5;
   scrollbar-width: thin;
+}
+
+.dark html {
+  scrollbar-color: #ff6f20 #111111;
 }

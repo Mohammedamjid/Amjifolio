@@ -1,82 +1,138 @@
-import React, { useRef, useState } from 'react';
-import { useIsVisible } from '../utils/hooks';
-import SectionHeading from '../components/SectionHeading';
-import ProjectCard from '../components/ProjectCard';
-import { projects } from '../data/projects';
+import React, { useRef } from "react";
+import { useIsVisible } from "../utils/hooks";
+import projects from "../data/projects";
 
 const ProjectsSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isVisible = useIsVisible(sectionRef);
-  const [filter, setFilter] = useState<string>('all');
-  
-  const allTags = Array.from(
-    new Set(projects.flatMap(project => project.tags))
-  );
-  
-  const filteredProjects = filter === 'all'
-    ? projects
-    : projects.filter(project => project.tags.includes(filter));
+
+  const handleEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector(".card-inner") as HTMLElement;
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const w = rect.width;
+
+    if (x < w / 2) {
+      card.style.transform = "rotateY(-180deg)";
+    } else {
+      card.style.transform = "rotateY(180deg)";
+    }
+  };
+
+  const handleLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget.querySelector(".card-inner") as HTMLElement;
+    card.style.transform = "rotateY(0deg)";
+  };
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       ref={sectionRef}
-      className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden"
+      className="pt-8 pb-8 bg-black text-white relative"
     >
-      {/* Background pattern */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white to-transparent dark:from-gray-800 dark:to-transparent opacity-50"
-        style={{
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 80%)'
-        }}
-      ></div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <SectionHeading 
-          title="My Projects" 
-          subtitle="Check out some of my recent work"
-        />
-        
-        <div className="flex justify-center mb-12 flex-wrap">
-          <button
-            onClick={() => setFilter('all')}
-            className={`m-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${
-              filter === 'all'
-                ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md'
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-            }`}
-          >
-            All
-          </button>
-          
-          {allTags.map((tag, index) => (
-            <button
-              key={index}
-              onClick={() => setFilter(tag)}
-              className={`m-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                filter === tag
-                  ? 'bg-gradient-to-r from-red-600 to-red-500 text-white shadow-md'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+      <div className="container mx-auto px-6">
+
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold">My Projects</h2>
+          <div className="w-16 h-[2px] bg-[#ff6f20] mx-auto mt-4"></div>
+          <p className="text-gray-400 mt-4">
+            Check out some of my recent work
+          </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          {projects.map((project, index) => (
+
             <div
               key={project.id}
-              className={`transition-all duration-500 h-full ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              className={`transition-all duration-700 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12"
               }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
+              style={{ transitionDelay: `${index * 120}ms` }}
             >
-              <ProjectCard project={project} />
+
+              <div
+                className="relative w-full h-[360px]"
+                style={{ perspective: "1000px" }}
+                onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
+              >
+
+                <div
+                  className="card-inner relative w-full h-full transition-transform duration-500 ease-out transform-gpu will-change-transform"
+                  style={{
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+
+                  {/* FRONT */}
+                  <div
+                    className="absolute inset-0 rounded-xl overflow-hidden border border-gray-700"
+                    style={{ backfaceVisibility: "hidden" }}
+                  >
+
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute w-full h-full object-cover"
+                    />
+
+                    <div className="absolute inset-0 bg-black/60 flex items-end justify-center pb-8">
+
+                      <h3 className="text-lg font-semibold text-white">
+                        {project.title}
+                      </h3>
+
+                    </div>
+
+                  </div>
+
+                  {/* BACK */}
+                  <div
+                    className="absolute inset-0 rounded-xl bg-black border border-[#ff6f20] flex items-center justify-center"
+                    style={{
+                      transform: "rotateY(180deg)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+
+                    <div className="text-center px-6">
+
+                      <h3 className="text-xl font-semibold mb-4">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-gray-400 text-sm mb-6">
+                        {project.description}
+                      </p>
+
+                      <button
+                        onClick={() => window.open(project.demo, "_blank")}
+                        className="border border-[#ff6f20] px-6 py-2 rounded-md text-sm hover:bg-[#ff6f20] transition"
+                      >
+                        Live Demo
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
             </div>
+
           ))}
+
         </div>
+
       </div>
     </section>
   );

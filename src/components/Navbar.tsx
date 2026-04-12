@@ -1,112 +1,102 @@
-import React, { useState } from 'react';
-import { navLinks } from '../data/navigation';
-import { Menu, X, Moon, Sun } from 'lucide-react';
-import { useDarkMode, useScrollPosition } from '../utils/hooks';
+import React, { useState } from "react";
+import { navLinks } from "../data/navigation";
+import { Menu, X } from "lucide-react";
+import { useScrollPosition } from "../utils/hooks";
 
-interface NavbarProps {
-  isHome?: boolean;
-}
-
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scrollPosition = useScrollPosition();
-  const { darkMode, toggleDarkMode } = useDarkMode();
-
-  const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setMobileMenuOpen(false);
-  };
 
   const isScrolled = scrollPosition > 50;
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white dark:bg-gray-900 shadow-md py-2' 
-          : 'bg-transparent py-4'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+  isScrolled
+    ? "bg-black md:bg-black/95 backdrop-blur-lg shadow-xl py-3 border-b border-[#ff6f20]/30"
+    : "bg-black py-4"
+}`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a 
-          href="#home" 
-          className="text-2xl font-bold tracking-tight relative z-10 group"
-        >
-          <span className="text-black-700 dark:text-blue-400">Amji</span>
-          <span className="text-red-600 dark:text-red-400">Folio</span>
-          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-700 to-red-600 group-hover:w-full transition-all duration-300"></span>
-        </a>
 
-        <div className="hidden md:flex items-center space-x-8">
-          <nav>
-            <ul className="flex space-x-6">
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <a
-                    href={link.path}
-                    className={`relative text-sm font-medium transition-colors hover:text-blue-700 dark:hover:text-blue-400
-                      ${isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-700 dark:text-gray-100'}`}
-                  >
-                    {link.title}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-700 to-red-600 group-hover:w-full transition-all duration-300"></span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <button 
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-600" />}
-          </button>
-        </div>
+        {/* Logo */}
+        <a
+  href="#home"
+  className="text-3xl md:text-4xl font-black tracking-widest relative group"
+  // style={{ fontFamily: "Orbitron, sans-serif" }}
+>
+ <span className="text-[#ff6f20] font-archivo tracking-tight text-2xl md:text-3xl">
+  AmjiFolio
+</span>
 
-        <div className="md:hidden flex items-center">
-          <button 
-            onClick={toggleDarkMode}
-            className="p-2 mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-600" />}
-          </button>
+  <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-gradient-to-r from-[#ff6f20] to-[#ff9a3c] transition-all duration-500 group-hover:w-full"></span>
+</a>
+
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center space-x-12">
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.path}
+              className="relative text-base font-semibold tracking-wide text-[#ff6f20] group transition duration-300"
+            >
+              {link.title}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#ff6f20] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
+        </nav>
+
+        {/* Mobile Toggle */}
+        <div className="md:hidden">
           <button
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-md border border-[#ff6f20]/40 text-[#ff6f20] hover:bg-[#ff6f20]/10 transition duration-300"
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+              <X className="w-6 h-6" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+              <Menu className="w-6 h-6" />
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white dark:bg-gray-900 z-40 transform transition-transform duration-300 ease-in-out ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
-      >
-        <div className="flex flex-col h-full justify-center items-center space-y-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.path}
-              className="text-2xl font-medium text-gray-800 dark:text-white hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
-              onClick={closeMenu}
-            >
-              {link.title}
-            </a>
-          ))}
-        </div>
+  className={`md:hidden fixed top-0 right-0 h-full w-1/2 bg-black shadow-2xl transform transition-transform duration-500 ease-in-out ${
+    mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+  {/* Close Button Inside Drawer */}
+  <div className="flex justify-end p-6">
+    <button
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-[#ff6f20] border border-[#ff6f20]/40 p-2 rounded-md hover:bg-[#ff6f20]/10 transition"
+    >
+      <X className="w-6 h-6" />
+    </button>
+  </div>
+
+  {/* Menu Items */}
+  <div className="flex flex-col px-8 mt-4">
+    {navLinks.map((link, index) => (
+      <div key={link.id} className="w-full">
+        <a
+          href={link.path}
+          onClick={() => setMobileMenuOpen(false)}
+          className="block py-5 text-xl font-semibold text-[#ff6f20] hover:translate-x-2 transition-all duration-300"
+        >
+          {link.title}
+        </a>
+
+        {index !== navLinks.length - 1 && (
+          <div className="w-full h-[1px] bg-[#ff6f20]/30"></div>
+        )}
       </div>
+    ))}
+  </div>
+</div>
+        
     </header>
   );
 };

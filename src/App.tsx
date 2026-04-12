@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
+import Experience from './sections/Experience';
+import EducationSection from './sections/EducationSection';
 import SkillsSection from './sections/SkillsSection';
 import ProjectsSection from './sections/ProjectsSection';
 import ContactSection from './sections/ContactSection';
@@ -50,11 +52,13 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">\
       <Navbar />
       <main>
         <HeroSection />
         <AboutSection />
+        <Experience/>
+        <EducationSection/>
         <SkillsSection />
         <ProjectsSection />
         <ContactSection />
