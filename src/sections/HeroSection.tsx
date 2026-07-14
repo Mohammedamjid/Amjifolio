@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
     <section
       id="home"
       ref={heroRef}
-      className="w-full bg-black text-white pt-16 pb-10 flex justify-center"
+      className="scroll-mt-24 w-full bg-black text-white pt-24 md:pt-28 pb-10 flex justify-center"
     >
       <div className="w-full max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
         {/* Profile Image */}
