@@ -1,47 +1,48 @@
-import React, { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
-import { Project } from '../types';
-import Button from './Button';
+import React from "react";
+import { ExternalLink } from "lucide-react";
+import { Project } from "../types";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div 
-      className="rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl bg-white dark:bg-gray-800 group relative h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="relative overflow-hidden h-48">
+    <div className="relative h-full overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800 group">
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300 ${isHovered ? 'opacity-80' : 'opacity-50'}`}></div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-50 transition-opacity duration-300 group-hover:opacity-80" />
+
+        {/* Demo Link */}
+        <a
+          href={project.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title}`}
+          className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-black shadow-lg transition-all duration-300 hover:scale-110 hover:bg-[#ff6f20] hover:text-white"
+        >
+          <ExternalLink className="h-5 w-5" />
+        </a>
       </div>
-      
-      <div className="p-5 flex flex-col h-[calc(100%-12rem)]">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
+
+      {/* Content */}
+      <div className="p-5">
+        <h3 className="mb-3 text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-[#ff6f20] dark:text-white">
           {project.title}
         </h3>
-        
-        <p className="text-gray-700 dark:text-gray-300 mb-4 flex-grow">
+
+        <p className="text-gray-700 dark:text-gray-300">
           {project.description}
         </p>
-        
-        <div className="flex space-x-3 mt-auto">
-          <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1">
-            <Button variant="outline" className="w-full">
-              <ExternalLink className="w-4 h-4 mr-1" />
-              Live Demo
-            </Button>
-          </a>
-        </div>
       </div>
     </div>
   );

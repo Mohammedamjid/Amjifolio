@@ -5,7 +5,6 @@ import hmh from "../assets/hmh.jpeg";
 import forecast from "../assets/forecast.jpeg";
 import mba from "../assets/mba.jpeg";
 import pgt from "../assets/pgt.jpeg";
-import portfolio from "../assets/portfolio.jpeg";
 
 export const projects: Project[] = [
   {
@@ -47,14 +46,6 @@ export const projects: Project[] = [
       "Developed a dynamic weather dashboard that fetches real-time weather data using APIs, displaying temperature, humidity, and forecast details. Implemented responsive design and user-friendly interface with location-based search functionality for accurate and seamless weather insights.",
     image: forecast,
     demo: "https://amji-forecastweatherapp.netlify.app/",
-  },
-  {
-    id: 6,
-    title: "Portfolio Website",
-    description:
-      "Designed and developed a responsive personal portfolio using modern web technologies to showcase projects, skills, and certifications. Implemented smooth animations, interactive UI components, and optimized performance to ensure a seamless user experience across devices.",
-    image: portfolio,
-    demo: "https://amjifolio.netlify.app/",
   },
 ];
 
