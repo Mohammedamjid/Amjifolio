@@ -2,7 +2,6 @@ import { Project } from "../types";
 
 import aban from "../assets/aban.jpeg";
 import hmh from "../assets/hmh.jpeg";
-import forecast from "../assets/forecast.jpeg";
 import mba from "../assets/mba.jpeg";
 import pgt from "../assets/pgt.jpeg";
 
@@ -38,15 +37,7 @@ export const projects: Project[] = [
       "Developed a professional website for an industrial trading company, highlighting instrumentation, automation solutions, and sector expertise. Designed a responsive and structured interface to effectively present services across oil & gas, water, power, and other industries, enhancing digital presence and client engagement.",
     image: pgt,
     demo: "https://www.pgt-me.com/",
-  },
-  {
-    id: 5,
-    title: "Weather Dashboard",
-    description:
-      "Developed a dynamic weather dashboard that fetches real-time weather data using APIs, displaying temperature, humidity, and forecast details. Implemented responsive design and user-friendly interface with location-based search functionality for accurate and seamless weather insights.",
-    image: forecast,
-    demo: "https://amji-forecastweatherapp.netlify.app/",
-  },
+  }
 ];
 
 export default projects;

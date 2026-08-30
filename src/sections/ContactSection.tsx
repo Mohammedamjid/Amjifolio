@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useIsVisible } from "../utils/hooks";
 import ContactForm from "../components/ContactForm";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail} from "lucide-react";
 
 const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -22,12 +22,7 @@ const ContactSection: React.FC = () => {
       icon: <Phone className="w-6 h-6 text-[#ff6f20]" />,
       title: "Phone",
       details: "+91 94884 65646",
-    },
-    {
-      icon: <Clock className="w-6 h-6 text-[#ff6f20]" />,
-      title: "Working Hours",
-      details: "Mon - Fri: 9AM - 7PM",
-    },
+    }
   ];
 
   return (
