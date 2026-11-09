@@ -34,7 +34,7 @@ const AboutSection: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,111,32,0.06),_transparent_70%)]"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        
+
         {/* ABOUT HEADING */}
         <div className="text-center mb-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
@@ -45,11 +45,13 @@ const AboutSection: React.FC = () => {
 
         {/* ABOUT DESCRIPTION */}
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <p className="text-gray-300 leading-relaxed">
-            I'm a passionate Software Developer focused on building clean, responsive, and high-performance web applications. I enjoy turning ideas into real digital products by combining modern technologies with efficient problem-solving.
-            I specialize in developing scalable web applications using modern tools and frameworks.
-            With a background in Information Technology and hands-on full-stack experience, I continuously improve my skills and build impactful digital solutions.
+
+          <p className="text-gray-300 leading-relaxed  text-left">
+            I'm a Freelance Web Developer passionate about creating modern, responsive, and high-performance websites that help businesses and individuals establish a strong online presence. I turn ideas into engaging digital experiences through clean design, efficient development, and user-focused solutions.
+            I specialize in building custom websites and web applications using modern technologies and frameworks, focusing on performance, scalability, and seamless user experiences.
+            Whether it's building a website from scratch or improving an existing one, I'm dedicated to delivering quality solutions that meet client needs and bring their ideas to life.
           </p>
+  
         </div>
 
         {/* WHAT I DO */}
@@ -65,11 +67,10 @@ const AboutSection: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`border border-[#ff6f20]/40 rounded-2xl p-6 text-center transition-all duration-700 transform hover:scale-105 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
+              className={`border border-[#ff6f20]/40 rounded-2xl p-6 text-center transition-all duration-700 transform hover:scale-105 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+                }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="mb-4 flex justify-center">{service.icon}</div>

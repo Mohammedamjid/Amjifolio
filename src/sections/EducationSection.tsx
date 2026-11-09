@@ -14,7 +14,6 @@ const EducationSection: React.FC = () => {
       degree: "Bachelor of Technology in Information Technology",
       institution: "Anna University",
       duration: "2020 - 2024",
-      percentage: "80.5%",
       description:
         "Focused on web technologies, algorithms, and software engineering principles.",
     },
@@ -22,14 +21,12 @@ const EducationSection: React.FC = () => {
       degree: "HSC - MPC",
       institution: "Tamilnadu State Board",
       duration: "2018 - 2020",
-      percentage: "70%",
       description: "Mathematics, Physics & Chemistry specialization.",
     },
     {
       degree: "SSLC",
       institution: "Tamilnadu State Board",
       duration: "2017 - 2018",
-      percentage: "81%",
       description: "Strong foundation in core academic subjects.",
     },
   ];
@@ -119,7 +116,7 @@ const EducationSection: React.FC = () => {
                       </p>
 
                       <p>
-                        {edu.duration} | {edu.percentage}
+                        {edu.duration}
                       </p>
 
                       <p className="mt-2 text-gray-500">

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useIsVisible } from "../utils/hooks";
-import Praxlog from "../assets/praxion logo.jpeg";
+import AmjiFL from "../assets/Amji_Logo.png";
 import labmentixlog from "../assets/labmentix logo.jpeg";
 
 const ExperienceSection: React.FC = () => {
@@ -9,12 +9,12 @@ const ExperienceSection: React.FC = () => {
 
   const experiences = [
     {
-      company: "Praxion Technologies",
-      logo: Praxlog,
+      company: "Freelancer",
+      logo: AmjiFL,
       role: "Full Stack Developer",
       period: "Sep 2025 – Present",
       description:
-        "Developing scalable web applications using the MERN stack, building REST APIs, and optimizing application performance."
+        "Designing and developing modern, responsive, and scalable web applications tailored to client requirements. Building full-stack solutions using the MERN stack, developing secure REST APIs, integrating databases, and optimizing application performance to deliver seamless user experiences."
     },
     {
       company: "Labmentix IT Services",
@@ -22,8 +22,8 @@ const ExperienceSection: React.FC = () => {
       role: "Web Developer Intern",
       period: "May 2025 – Aug 2025",
       description:
-        "Designed responsive UI components, integrated backend APIs, and improved usability across web applications."
-    }
+        "Developed responsive and user-friendly web interfaces, integrated RESTful APIs, and collaborated on building functional web applications. Focused on improving UI/UX, optimizing frontend performance, and ensuring seamless interaction between frontend components and backend services."
+    },
   ];
 
   return (
@@ -53,11 +53,10 @@ const ExperienceSection: React.FC = () => {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className={`flex flex-col md:flex-row md:items-start gap-5 transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
+              className={`flex flex-col md:flex-row md:items-start gap-5 transition-all duration-700 ${isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+                }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
 
